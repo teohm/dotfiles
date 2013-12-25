@@ -1,0 +1,26 @@
+[core]
+	excludesfile = ~/.gitignore_global
+[alias]
+  aa = add --all
+  dc = diff --cached
+  di = diff
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	lg = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%d %C(bold blue)%an\t%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	type = cat-file -t
+	dump = cat-file -p
+  mff = merge --ff-only
+  mnf = merge --no-ff
+[color]
+  ui = auto
+[merge]
+  keepBackup = false
+  tool = vimdiff
+[web]
+	browser = open
+[push]
+	default = current
+[include]
+  path = .gitconfig.local

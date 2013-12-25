@@ -1,0 +1,3 @@
+alias be="bundle exec"
+alias bo="bundle open"
+alias dnsflush="sudo killall -HUP mDNSResponder"
