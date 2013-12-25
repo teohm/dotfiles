@@ -1,6 +1,9 @@
-## OS generated files
+# OS generated files
 .DS_Store
+.AppleDouble
+.LSOverride
 ehthubms.db
-THumbs.db
-.idea
-.rvmrc
+Thumbs.db
+._*
+.Spotlight-V100
+.Trashes
