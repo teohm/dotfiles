@@ -1,3 +1,11 @@
+# unix
+alias l='ls'
+alias ll='ls -al'
+alias lh='ls -Alh'
+
+# ruby
 alias be="bundle exec"
 alias bo="bundle open"
+
+# osx
 alias dnsflush="sudo killall -HUP mDNSResponder"
