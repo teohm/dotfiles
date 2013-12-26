@@ -1,12 +1,12 @@
 [submodule "all/.vim/bundle/grb256"]
 	path = all/.vim/bundle/grb256
-	url = git@github.com:quanganhdo/grb256.git
+	url = https://github.com/quanganhdo/grb256.git
 [submodule "all/.vim/bundle/pathogen"]
 	path = all/.vim/bundle/pathogen
-	url = git@github.com:tpope/vim-pathogen.git
+	url = https://github.com/tpope/vim-pathogen.git
 [submodule "all/.vim/bundle/airline"]
 	path = all/.vim/bundle/airline
-	url = git@github.com:bling/vim-airline.git
+	url = https://github.com/bling/vim-airline.git
 [submodule "all/.vim/bundle/ctrlp"]
 	path = all/.vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
