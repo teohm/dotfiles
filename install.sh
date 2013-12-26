@@ -2,13 +2,12 @@
 
 set -e
 
-old_pwd=$PWD
+if [[ -z `which git` ]]; then
+  echo 'err: please install git'
+  exit 1;
+fi
 
 cd $HOME
 git clone https://github.com/teohm/dotfiles.git .dotfiles
 
-cd .dotfiles
-git submodules update --init
-stow all
-
-cd $old_pwd
+$HOME/.dotfiles/setup.sh
