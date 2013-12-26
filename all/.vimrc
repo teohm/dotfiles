@@ -475,4 +475,3 @@ nnoremap <leader>. :call OpenTestAlternate()<cr>
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
 endif
-endif
