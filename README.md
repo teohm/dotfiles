@@ -29,6 +29,11 @@ cd .dotfiles
 git submodules update --init
 stow all
 ```
+OR
+
+```
+curl -L https://raw.github.com/teohm/dotfiles/master/install.sh | bash
+```
 
 ## update
 ```
@@ -37,7 +42,9 @@ git pull --recurse-submodules
 stow all
 ```
 
-## TODO
+OR
 
-* bootstrap.sh
-* update.sh
+```
+~/.dotfiles/update.sh
+```
+
