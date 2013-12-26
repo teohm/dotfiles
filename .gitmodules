@@ -82,3 +82,6 @@
 [submodule "all/.vim/bundle/supertab"]
 	path = all/.vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "all/.vim/bundle/rails"]
+	path = all/.vim/bundle/rails
+	url = https://github.com/tpope/vim-rails.git

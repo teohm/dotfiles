@@ -1,14 +1,16 @@
 ""
+"" Leader key
+""
+
+let mapleader = ','
+let g:netrw_home = $HOME
+
+""
 "" Pathogen
 ""
 runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-""
-"" Leader key
-""
-
-let mapleader = ','
 
 ""
 "" Basic Setup
@@ -84,7 +86,6 @@ set wildignore+=*.swp,*~,._*
 
 set backupdir^=~/.vim-data/backup//    " where to put backup files.
 set directory^=~/.vim-data/temp//      " where to put swap files.
-let g:netrw_home="~/.vim-data"
 
 
 ""
@@ -467,3 +468,11 @@ function! AlternateForCurrentFile()
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
+
+""
+"" Load ~/.vimrc.local
+""
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
+endif
