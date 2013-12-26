@@ -1,3 +1,4 @@
 /all/.vim-data/temp/*
 /all/.vim-data/backup/*
+/all/.vim-data/.*
 !.gitkeep
