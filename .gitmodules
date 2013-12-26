@@ -79,4 +79,6 @@
 [submodule "all/.vim/bundle/visualstar"]
 	path = all/.vim/bundle/visualstar
 	url = https://github.com/thinca/vim-visualstar.git
-
+[submodule "all/.vim/bundle/supertab"]
+	path = all/.vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
