@@ -10,6 +10,7 @@ let g:netrw_home = $HOME
 ""
 runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
+Helptags
 
 
 ""
@@ -310,9 +311,11 @@ set showcmd        " shows incomplete command to the left of the ruler
 set colorcolumn=80 " draw line at column 80
 
 " Theme
-set t_Co=256 " 256 colors
+if $TERM == "xterm-256color"
+  set t_Co=256 " 256 colors
+endif
 set background=dark
-"colorscheme grb256
+colorscheme grb256
 
 """""""""""""""""
 " M A P P I N G
