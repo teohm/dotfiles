@@ -10,7 +10,6 @@ fi
 old_pwd=$PWD
 
 cd `dirname "${BASH_SOURCE[0]}"`
-git submodule update --init
 stow all
 
 cd $old_pwd
