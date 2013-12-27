@@ -3,7 +3,7 @@
 old_pwd=$PWD
 
 cd `dirname "${BASH_SOURCE[0]}"`
-git pull origin
+gittrees-update
 stow all
 
 cd $old_pwd

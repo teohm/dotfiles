@@ -1,12 +1,11 @@
 # teohm's dotfiles
 
-
-
 ## dependencies
 
 ### required
 ```
 brew install stow git
+
 sudo apt-get install stow git
 ```
 
@@ -24,27 +23,22 @@ brew install sshuttle
 ```
 cd ~
 git clone https://github.com/teohm/dotfiles.git .dotfiles
+~/.dotfiles/setup.sh
 
-cd .dotfiles
-git submodules update --init
-stow all
-```
-OR
+# -or-
 
-```
 curl -L https://raw.github.com/teohm/dotfiles/master/install.sh | bash
 ```
 
-## update
+## pull updates from my repo
 ```
-cd .dotfiles
-git pull --recurse-submodules
-stow all
+~/.dotfile/update.sh
 ```
 
-OR
-
+## update subtrees e.g. `.vim/bundle`
 ```
-~/.dotfiles/update.sh
-```
+# add entry in ~/.dotfiles/.gittrees
+# make sure working directory is clean.
 
+~/.dotfile/update_subtrees.sh
+```
