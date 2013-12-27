@@ -47,8 +47,6 @@ git clone https://github.com/teohm/dotfiles.git .dotfiles
 bash < <(wget -qO - https://raw.github.com/teohm/dotfiles/master/install.sh)
 
 bash < <(curl -s https://raw.github.com/teohm/dotfiles/master/install.sh)
-
-
 ```
 
 ## pull updates from my repo
