@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+if [ $# -eq 1 ]; then
+  grep_filter="$1"
+elif [ $# -eq 0 ]; then
+  grep_filter="."
+else
+  echo "Add/update git subtrees listed in .gittrees file in current working directory.
+
+Usage: $(basename $0) [<prefix_grep_filter>]
+prefix_grep_filter    git subtree's prefix filter, passed to grep (default: '.')
+
+Examples:
+$(basename $0)           # add/update git subtrees listed in .gittrees file
+$(basename $0) pathogen  # add/update subtrees with matching prefix: pathogen
+"
+  exit
+fi
+
+prefixes=$(
+  git config -f .gittrees -l |
+  grep ^subtree\\. | grep -F .path= | grep -o '=.*' | grep -o '[^=].*' |
+  grep $grep_filter
+)
+
+for path in $prefixes; do
+    url=$(git config -f .gittrees subtree.$path.url)
+    branch=$(git config -f .gittrees subtree.$path.branch)
+
+    if [ ! -e "$path" ]; then
+      git subtree add -P $path $url $branch --squash || exit $?
+      #echo "git subtree add -P $path $url $branch --squash || exit $?"
+    else
+      git subtree pull -P $path $url $branch --squash || exit $?
+      #echo "git subtree pull -P $path $url $branch --squash || exit $?"
+    fi
+  done

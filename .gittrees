@@ -1,0 +1,120 @@
+[subtree "all/.vim/bundle/grb256"]
+	path = all/.vim/bundle/grb256
+	url = https://github.com/quanganhdo/grb256.git
+  branch = master
+[subtree "all/.vim/bundle/pathogen"]
+  path = all/.vim/bundle/pathogen
+  url = https://github.com/tpope/vim-pathogen.git
+  branch = master
+[subtree "all/.vim/bundle/airline"]
+	path = all/.vim/bundle/airline
+	url = https://github.com/bling/vim-airline.git
+  branch = master
+[subtree "all/.vim/bundle/ctrlp"]
+	path = all/.vim/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim.git
+  branch = master
+[subtree "all/.vim/bundle/ack"]
+	path = all/.vim/bundle/ack
+	url = https://github.com/mileszs/ack.vim.git
+  branch = master
+[subtree "all/.vim/bundle/polyglot"]
+	path = all/.vim/bundle/polyglot
+	url = https://github.com/sheerun/vim-polyglot.git
+  branch = master
+[subtree "all/.vim/bundle/unimpaired"]
+	path = all/.vim/bundle/unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+  branch = master
+[subtree "all/.vim/bundle/matchit"]
+	path = all/.vim/bundle/matchit
+	url = https://github.com/edsono/vim-matchit.git
+  branch = master
+[subtree "all/.vim/bundle/fugitive"]
+	path = all/.vim/bundle/fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+  branch = master
+[subtree "all/.vim/bundle/gundo"]
+	path = all/.vim/bundle/gundo
+	url = https://github.com/sjl/gundo.vim.git
+  branch = master
+[subtree "all/.vim/bundle/surround"]
+	path = all/.vim/bundle/surround
+	url = https://github.com/tpope/vim-surround.git
+  branch = master
+[subtree "all/.vim/bundle/snipmate"]
+	path = all/.vim/bundle/snipmate
+	url = https://github.com/garbas/vim-snipmate.git
+  branch = master
+[subtree "all/.vim/bundle/tlib"]
+	path = all/.vim/bundle/tlib
+	url = https://github.com/tomtom/tlib_vim.git
+  branch = master
+[subtree "all/.vim/bundle/vim-addon-mw-utils"]
+	path = all/.vim/bundle/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+  branch = master
+[subtree "all/.vim/bundle/syntastic"]
+	path = all/.vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+  branch = master
+[subtree "all/.vim/bundle/tagbar"]
+	path = all/.vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
+  branch = master
+[subtree "all/.vim/bundle/indent-object"]
+	path = all/.vim/bundle/indent-object
+	url = https://github.com/michaeljsmith/vim-indent-object.git
+  branch = master
+[subtree "all/.vim/bundle/endwise"]
+	path = all/.vim/bundle/endwise
+	url = https://github.com/tpope/vim-endwise.git
+  branch = master
+[subtree "all/.vim/bundle/css-color"]
+	path = all/.vim/bundle/css-color
+	url = https://github.com/ap/vim-css-color.git
+  branch = master
+[subtree "all/.vim/bundle/kwbd"]
+	path = all/.vim/bundle/kwbd
+	url = https://github.com/rgarver/Kwbd.vim.git
+  branch = master
+[subtree "all/.vim/bundle/vroom"]
+	path = all/.vim/bundle/vroom
+	url = https://github.com/skalnik/vim-vroom.git
+  branch = master
+[subtree "all/.vim/bundle/eunuch"]
+	path = all/.vim/bundle/eunuch
+	url = https://github.com/tpope/vim-eunuch.git
+  branch = master
+[subtree "all/.vim/bundle/repeat"]
+	path = all/.vim/bundle/repeat
+	url = https://github.com/tpope/vim-repeat.git
+  branch = master
+[subtree "all/.vim/bundle/vim-snippets"]
+	path = all/.vim/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+  branch = master
+[subtree "all/.vim/bundle/dispatch"]
+	path = all/.vim/bundle/dispatch
+	url = https://github.com/tpope/vim-dispatch.git
+  branch = master
+[subtree "all/.vim/bundle/multiple-cursors"]
+	path = all/.vim/bundle/multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors.git
+  branch = master
+[subtree "all/.vim/bundle/visualstar"]
+	path = all/.vim/bundle/visualstar
+	url = https://github.com/thinca/vim-visualstar.git
+  branch = master
+[subtree "all/.vim/bundle/supertab"]
+	path = all/.vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+  branch = master
+[subtree "all/.vim/bundle/rails"]
+	path = all/.vim/bundle/rails
+	url = https://github.com/tpope/vim-rails.git
+  branch = master
+[subtree "all/.vim/bundle/nerdcommenter"]
+	path = all/.vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+  branch = master
