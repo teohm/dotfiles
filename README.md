@@ -10,10 +10,8 @@ brew install stow git
 # sudo apt-get update
 sudo apt-get install stow git
 ## Enable git subtree
-# sudo ln -s /usr/share/doc/git/contrib/subtree/git-subtree.sh
-/usr/lib/git-core/git-subtree
-# sudo ln -s /usr/share/doc/git/contrib/subtree/git-subtree.sh
-/usr/lib/git-core/git-subtree
+# sudo ln -s /usr/share/doc/git/contrib/subtree/git-subtree.sh /usr/lib/git-core/git-subtree
+# sudo ln -s /usr/share/doc/git/contrib/subtree/git-subtree.sh /usr/lib/git-core/git-subtree
 ```
 
 ### optional
