@@ -85,3 +85,6 @@
 [submodule "all/.vim/bundle/rails"]
 	path = all/.vim/bundle/rails
 	url = https://github.com/tpope/vim-rails.git
+[submodule "all/.vim/bundle/nerdcommenter"]
+	path = all/.vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
