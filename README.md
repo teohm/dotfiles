@@ -40,7 +40,8 @@ sudo apt-get install sshuttle
 ```
 cd ~
 git clone https://github.com/teohm/dotfiles.git .dotfiles
-~/.dotfiles/public/bin/dotfiles public
+git clone git@bitbucket.org:{username}/dotfiles-private.git .dotfiles/private   # your private staff e.g. .ssh, hosts
+~/.dotfiles/public/bin/dotfiles public private
 
 # -or-
 
