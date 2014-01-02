@@ -40,7 +40,7 @@ sudo apt-get install sshuttle
 ```
 cd ~
 git clone https://github.com/teohm/dotfiles.git .dotfiles
-~/.dotfiles/setup.sh
+~/.dotfiles/public/bin/dotfiles public
 
 # -or-
 
@@ -51,7 +51,9 @@ bash < <(curl -s https://raw.github.com/teohm/dotfiles/master/install.sh)
 
 ## pull updates from my repo
 ```
-~/.dotfile/update.sh
+cd ~/.dotfiles
+git pull origin master
+dotfiles public
 ```
 
 ## update subtrees e.g. `.vim/bundle`
@@ -59,5 +61,8 @@ bash < <(curl -s https://raw.github.com/teohm/dotfiles/master/install.sh)
 # add entry in ~/.dotfiles/.gittrees
 # make sure working directory is clean.
 
-~/.dotfile/update_subtrees.sh
+cd ~/.dotfiles
+gittrees-update
+
+dotfiles public
 ```

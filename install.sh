@@ -10,4 +10,4 @@ fi
 cd $HOME
 git clone https://github.com/teohm/dotfiles.git .dotfiles
 
-$HOME/.dotfiles/setup.sh
+$HOME/.dotfiles/public/bin/dotfiles public
