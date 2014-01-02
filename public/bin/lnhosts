@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo mv /etc/hosts /etc/hosts.previous
+sudo ln ~/.hosts /etc/hosts

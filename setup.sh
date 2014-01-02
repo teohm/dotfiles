@@ -10,6 +10,6 @@ fi
 old_pwd=$PWD
 
 cd `dirname "${BASH_SOURCE[0]}"`
-stow all
+stow public
 
 cd $old_pwd

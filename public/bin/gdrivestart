@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ $# -eq 1 ]; then
+  user="$1"
+else
+  echo "Usage: $0 USER"
+  exit 1
+fi
+
+su $user -c "/Applications/Google\ Drive.app/Contents/MacOS/Google\ Drive"

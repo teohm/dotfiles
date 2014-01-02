@@ -4,6 +4,6 @@ old_pwd=$PWD
 
 cd `dirname "${BASH_SOURCE[0]}"`
 git pull origin
-stow all
+stow public
 
 cd $old_pwd
