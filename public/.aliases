@@ -11,3 +11,4 @@ alias bo="bundle open"
 
 # osx
 alias dnsflush="sudo killall -HUP mDNSResponder"
+alias deploy-automators="sudo cp -r ~/osx-automators/*.app /Applications/"
