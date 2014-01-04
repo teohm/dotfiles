@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+
+BREW_WATCHLIST='git macvim chruby ruby-install tmux'
+GEM_WATCHLIST='bundler metric_fu brakeman zeus pry pry-plus rubocop'
+
+echo "------------"
+date
+
+cd /Users/huiming/
+
+echo ""
+echo "* Update gem watchlist.."
+gem update --system
+gem install $GEM_WATCHLIST
+
+echo ""
+echo "* Update homebrew watchlist.."
+brew update
+brew upgrade $BREW_WATCHLIST
+
+echo ""
+echo "* Update brew-list.."
+brew list > notes/brew-list.txt
+
+echo ""
+echo "* Update application-list.."
+ls /Applications > notes/application-list.txt
+
+echo ""
+echo "* Update dotfiles's git submodules.."
+git pull --recurse-submodules && git submodule update --recursive
+
+echo ""
+echo "[Reminder] Outdated homebrew packages:"
+brew outdated
