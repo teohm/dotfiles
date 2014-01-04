@@ -7,4 +7,11 @@ else
   exit 1
 fi
 
+dscl . -read /Users/$user > /dev/null 2>&1 # user exists?
+if [ $? -ne 0 ]; then
+          #username fullname password admin?
+  answers="$user\n$user\n$user\nn\n"
+  cat <(echo -e $answers) | adduser
+fi
+
 su $user -c "/Applications/Google\ Drive.app/Contents/MacOS/Google\ Drive"
