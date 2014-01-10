@@ -1,7 +1,7 @@
 tags
 /private
-/all/.vim-data/temp/*
-/all/.vim-data/backup/*
-/all/.vim-data/.*
+/public/.vim-data/temp/*
+/public/.vim-data/backup/*
+/public/.vim-data/.*
 !.gitkeep
 
