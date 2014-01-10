@@ -3,6 +3,11 @@
 ""
 
 let mapleader = ','
+
+""
+"" Netrw
+""
+let g:netrw_preview = 1
 let g:netrw_home = $HOME
 
 ""
@@ -360,7 +365,7 @@ map <leader>gg :topleft 100 :split Gemfile<cr>
 "map <leader>ru :w\|:RuboCop<cr>
 
 " Open current directory
-map <leader>d :topleft :split .<cr>
+map <leader>d :e %:h<cr>
 
 " Use Kwdb to kill current buffer without closing window
 map <leader>q :Kwbd<cr>
