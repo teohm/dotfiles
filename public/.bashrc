@@ -1,3 +1,6 @@
+# Why use .bashrc?
+# Read: http://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
+
 # Loads all my bash functions
 for f in ~/.functions.d/*.bash; do
   . $f;
