@@ -8,7 +8,6 @@ install curl
 install curl-ca-bundle
 install docker
 install dos2unix
-install fnichol/dvm/dvm
 install elasticsearch
 install fuse4x
 install fuse4x-kext
@@ -51,3 +50,5 @@ install tmux
 install tree
 install watch
 install wget
+install fnichol/dvm/dvm
+install phinze/cask/brew-cask
