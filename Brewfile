@@ -1,4 +1,9 @@
 # brew bundle
+
+install phinze/cask/brew-cask # GUI app installer
+cask install xquartz          # required by X11 cli apps
+
+# CLI apps
 install autojump
 install bash-completion
 install chruby
@@ -51,4 +56,24 @@ install tree
 install watch
 install wget
 install fnichol/dvm/dvm
-install phinze/cask/brew-cask
+
+# Applications
+cask install bittorrent-sync
+cask install cyberduck
+cask install dropbox
+cask install google-chrome
+cask install google-drive
+cask install google-hangouts
+cask install ichm
+cask install iterm2
+cask install jumpcut
+cask install kindle
+cask install mou
+cask install picasa
+cask install screenhero
+cask install skype
+cask install tunnelblick
+cask install utorrent
+cask install virtualbox
+cask install vlc
+cask install caskroom/versions/sublime-text3
