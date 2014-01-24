@@ -17,7 +17,9 @@ cscope
 ctags
 curl
 curl-ca-bundle
+docker
 dos2unix
+dvm
 elasticsearch
 erlang
 faac
@@ -107,6 +109,8 @@ ruby-install
 s-lang
 sbt
 scala
+scons
+snowcrash
 sqlite
 ssh-copy-id
 sshuttle
