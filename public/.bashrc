@@ -11,10 +11,10 @@ if [[ -f /usr/local/bin/brew ]]; then
   # brew doctor says let'em load first!
   export PATH=/usr/local/bin:/usr/local/sbin:$PATH
   BREW_HOME=`brew --prefix`
+  # tell brew cask to use /Applications
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 fi
 
-# Install brew cask apps to /Applications
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # Adds NPM bins to PATH
 export PATH=$PATH:/usr/local/share/npm/bin

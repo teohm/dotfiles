@@ -5,6 +5,9 @@ alias lh='ls -Alh'
 alias issh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias dotfiles='stow -d ~/.dotfiles'
 
+# tmux
+alias tmux='tmux -u'
+
 # ruby
 alias be="bundle exec"
 alias bo="bundle open"
