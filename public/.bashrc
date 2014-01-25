@@ -13,6 +13,9 @@ if [[ -f /usr/local/bin/brew ]]; then
   BREW_HOME=`brew --prefix`
 fi
 
+# Install brew cask apps to /Applications
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
 # Adds NPM bins to PATH
 export PATH=$PATH:/usr/local/share/npm/bin
 
