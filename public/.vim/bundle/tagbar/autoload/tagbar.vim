@@ -4,7 +4,7 @@
 " Author:      Jan Larres <jan@majutsushi.net>
 " Licence:     Vim licence
 " Website:     http://majutsushi.github.com/tagbar/
-" Version:     2.6
+" Version:     2.6.1
 " Note:        This plugin was heavily inspired by the 'Taglist' plugin by
 "              Yegappan Lakshmanan and uses a small amount of code from it.
 "
@@ -3740,6 +3740,7 @@ function! s:QuitIfOnlyWindow() abort
     endif
 
     let curwinnr = winnr()
+    let prevwinnr = winnr('#')
     call s:goto_win(tagbarwinnr, 1)
 
     " Check if there is more than one window
@@ -3759,6 +3760,7 @@ function! s:QuitIfOnlyWindow() abort
         endif
     endif
 
+    call s:goto_win(prevwinnr, 1)
     call s:goto_win(curwinnr, 1)
 endfunction
 
