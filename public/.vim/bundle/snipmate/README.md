@@ -44,6 +44,23 @@ looking at the [vim-snippets][vim-snippets] repository.
         " Optional:
         Bundle "honza/vim-snippets"
 
+## Release Notes ##
+
+### Master ###
+
+* Fix bug with mirrors in the first column
+* Fix bug with tabs in indents ([#143][143])
+
+### 0.87 - 2014-01-04 ###
+
+* Stop indenting empty lines when expanding snippets
+* Support extends keyword in .snippets files
+* Fix visual placeholder support
+* Add zero tabstop support
+* Support negative 'softtabstop'
+* Add g:snipMate_no_default_aliases option
+* Add <Plug>snipMateTrigger for triggering an expansion inside a snippet
+* Add snipMate#CanBeTriggered() function
 
 [ultisnips]: https://github.com/sirver/ultisnips
 [msanders]: https://github.com/msanders
@@ -56,3 +73,5 @@ looking at the [vim-snippets][vim-snippets] repository.
 [vam]: https://github.com/marcweber/vim-addon-manager
 [pathogen]: https://github.com/tpope/vim-pathogen
 [vundle]: https://github.com/gmarik/vundle
+
+[143]: https://github.com/garbas/vim-snipmate/issues/143
