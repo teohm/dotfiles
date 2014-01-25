@@ -118,3 +118,7 @@
 	path = public/.vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
   branch = master
+[subtree "public/.oh-my-zsh"]
+	path = public/.oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
+  branch = master
