@@ -3,4 +3,5 @@
 
 if !( has('gui_running') || &t_Co==256 ) | finish | endif
 
-call css_color#init('css', 'cssMediaBlock,cssFunction,cssDefinition,cssAttrRegion,cssComment')
+" default html syntax should already be including the css syntax
+syn cluster colorableGroup add=htmlString,htmlCommentPart
