@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-05-01.
-" @Last Change: 2013-12-03.
-" @Revision:    0.1.1307
+" @Last Change: 2014-01-23.
+" @Revision:    0.1.1360
 
 " :filedoc:
 " A prototype used by |tlib#input#List|.
@@ -120,6 +120,22 @@ endf
 
 
 " :nodoc:
+function! s:prototype.DisplayFormat(list) dict "{{{3
+    let display_format = self.display_format
+    if !empty(display_format)
+        if has_key(self, 'InitFormatName')
+            call self.InitFormatName()
+        endif
+        let cache = self.fmt_display
+        " TLogVAR display_format, fmt_entries
+        return map(copy(a:list), 'self.FormatName(cache, display_format, v:val)')
+    else
+        return a:list
+    endif
+endf
+
+
+" :nodoc:
 function! s:prototype.Set_highlight_filename() dict "{{{3
     let self.tlib_UseInputListScratch = 'call world.Highlight_filename()'
 endf
@@ -181,6 +197,32 @@ else
 
 
     " :nodoc:
+    function! s:prototype.UseFilenameIndicators() dict "{{{3
+        return g:tlib_inputlist_filename_indicators || has_key(self, 'filename_indicators')
+    endf
+
+
+    " :nodoc:
+    function! s:prototype.InitFormatName() dict "{{{3 
+        if self.UseFilenameIndicators()
+            let self._buffers = {}
+            for bufnr in range(1, bufnr('$'))
+                let filename = fnamemodify(bufname(bufnr), ':p')
+                " TLogVAR filename
+                let bufdef = {
+                            \ 'bufnr': bufnr,
+                            \ }
+                " '&buflisted'
+                for opt in ['&modified', '&bufhidden']
+                    let bufdef[opt] = getbufvar(bufnr, opt)
+                endfor
+                let self._buffers[filename] = bufdef
+            endfor
+        endif
+    endf
+
+
+    " :nodoc:
     function! s:prototype.FormatFilename(file) dict "{{{3
         " TLogVAR a:file
         let width = self.width_filename
@@ -196,36 +238,34 @@ else
         if strwidth(fname) > width
             let fname = strpart(fname, 0, width - 3) .'...'
         endif
-        let dnmax = &co - max([width, strwidth(fname)]) - 10 - self.index_width - &fdc
-        if g:tlib_inputlist_filename_indicators
-            let dnmax -= 2
-        endif
-        if strwidth(dname) > dnmax
-            let dname = '...'. strpart(dname, len(dname) - dnmax)
-        endif
-        let marker = []
-        let use_indicators = g:tlib_inputlist_filename_indicators || has_key(self, 'filename_indicators')
+        let dnmax = &co - max([width, strwidth(fname)]) - 8 - self.index_width - &fdc
+        let use_indicators = self.UseFilenameIndicators()
         " TLogVAR use_indicators
+        let marker = []
         if use_indicators
             call insert(marker, '[')
-            let bnr = bufnr(a:file)
-            " TLogVAR a:file, bnr, self.bufnr
-            if bnr != -1
-                if bnr == self.bufnr
-                    call add(marker, '%')
-                else
-                    call add(marker, bnr)
+            if g:tlib_inputlist_filename_indicators
+                let bufdef = get(self._buffers, a:file, {})
+                " let bnr = bufnr(a:file)
+                let bnr = get(bufdef, 'bufnr', -1)
+                " TLogVAR a:file, bnr, self.bufnr
+                if bnr != -1
+                    if bnr == self.bufnr
+                        call add(marker, '%')
+                    else
+                        call add(marker, bnr)
+                    endif
+                    if get(bufdef, '&modified', 0)
+                        call add(marker, '+')
+                    endif
+                    if get(bufdef, '&bufhidden', '') == 'hide'
+                        call add(marker, 'h')
+                    endif
+                    " if !get(bufdef, '&buflisted', 1)
+                    "     call add(marker, 'u')
+                    " endif
+                    " echom "DBG" a:file string(get(self,'filename_indicators'))
                 endif
-                if getbufvar(bnr, '&modified')
-                    call add(marker, '+')
-                endif
-                if getbufvar(bnr, '&bufhidden') == 'hide'
-                    call add(marker, 'h')
-                endif
-                " if !buflisted(bnr)
-                "     call add(marker, 'u')
-                " endif
-                " echom "DBG" a:file string(get(self,'filename_indicators'))
             endif
             if has_key(self, 'filename_indicators') && has_key(self.filename_indicators, a:file)
                 if len(marker) > 1
@@ -240,9 +280,16 @@ else
         else
             call add(marker, '|')
         endif
+        let markers = join(marker, '')
+        if !empty(markers)
+            let dnmax -= len(markers)
+        endif
+        if strwidth(dname) > dnmax
+            let dname = '...'. strpart(dname, len(dname) - dnmax)
+        endif
         return printf("%-*s %s %s",
                     \ self.width_filename + len(fname) - strwidth(fname),
-                    \ fname, join(marker, ''), dname)
+                    \ fname, markers, dname)
     endf
 
 endif
@@ -921,16 +968,17 @@ function! s:prototype.DisplayHelp() dict "{{{3
     let self.temp_lines = self.InitHelp()
     call self.PushHelp('<Esc>', self.key_mode == 'default' ? 'Abort' : 'Reset keymap')
     call self.PushHelp('Enter, <cr>', 'Pick the current item')
-    call self.PushHelp('<M-Number>',  'Pick an item')
     call self.PushHelp('Mouse', 'L: Pick item, R: Show menu')
+    call self.PushHelp('<M-Number>',  'Select an item')
     call self.PushHelp('<BS>, <C-BS>', 'Reduce filter')
     call self.PushHelp('<S-Esc>, <F10>', 'Enter command')
 
     if self.key_mode == 'default'
-        call self.PushHelp('<C|M-r>',     'Reset the display')
+        call self.PushHelp('<C|M-r>',      'Reset the display')
         call self.PushHelp('Up/Down',      'Next/previous item')
-        call self.PushHelp('<C|M-q>',     'Edit top filter string')
+        call self.PushHelp('<C|M-q>',      'Edit top filter string')
         call self.PushHelp('Page Up/Down', 'Scroll')
+        call self.PushHelp('<S-Space>',    'Enter * Wildcard')
         if self.allow_suspend
             call self.PushHelp('<C|M-z>', 'Suspend/Resume')
             call self.PushHelp('<C-o>', 'Switch to origin')
@@ -1162,7 +1210,7 @@ function! s:prototype.Query() dict "{{{3
     if g:tlib_inputlist_shortmessage
         let query = 'Filter: '. self.DisplayFilter()
     else
-        let query = self.query .' (filter: '. self.DisplayFilter() .'; press "?" for help)'
+        let query = self.query .' (filter: '. self.DisplayFilter() .'; press <F1> for help)'
     endif
     return query
 endf
