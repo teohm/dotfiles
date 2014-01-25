@@ -1,5 +1,5 @@
 au BufRead,BufNewFile *.ino,*.pde set filetype=arduino
-au BufNewFile,BufRead *.clj,*.cljs,*.edn		setf clojure
+autocmd BufNewFile,BufRead *.clj,*.cljs,*.edn setlocal filetype=clojure
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
 autocmd BufNewFile,BufRead *.coffeekup,*.ck set filetype=coffee
@@ -108,7 +108,7 @@ au BufNewFile,BufRead *.jbuilder		set filetype=ruby
 au BufNewFile,BufRead Puppetfile		set filetype=ruby
 au BufNewFile,BufRead [Bb]uildfile		set filetype=ruby
 au BufNewFile,BufRead Appraisals		set filetype=ruby
-au BufRead,BufNewFile *.rs,*.rc set filetype=rust
+au BufRead,BufNewFile *.rs set filetype=rust
 au BufRead,BufNewFile *.sbt set filetype=sbt
 fun! s:DetectScala()
     if getline(1) == '#!/usr/bin/env scala'
@@ -117,7 +117,7 @@ fun! s:DetectScala()
 endfun
 au BufRead,BufNewFile *.scala,*.sbt set filetype=scala
 au BufRead,BufNewFile * call s:DetectScala()
-autocmd BufNewFile,BufRead *.slim setf slim
+autocmd BufNewFile,BufRead *.slim set filetype=slim
 autocmd BufNewFile,BufReadPost *.styl set filetype=stylus
 autocmd BufNewFile,BufReadPost *.stylus set filetype=stylus
 au BufRead,BufNewFile *.textile set filetype=textile
