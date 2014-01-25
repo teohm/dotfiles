@@ -19,7 +19,7 @@ if !exists('g:syntastic_erlc_include_path')
     let g:syntastic_erlc_include_path = ''
 endif
 
-let s:check_file = expand('<sfile>:p:h') . '/erlang_check_file.erl'
+let s:check_file = expand('<sfile>:p:h') . syntastic#util#Slash() . 'erlang_check_file.erl'
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -30,7 +30,7 @@ function! SyntaxCheckers_erlang_escript_GetLocList() dict
     endif
 
     let shebang = syntastic#util#parseShebang()
-    if shebang['exe'] ==# 'escript'
+    if shebang['exe'] =~# '\m\<escript$' || (shebang['exe'] ==# '/usr/bin/env' && shebang['args'][0] ==# 'escript')
         let args = '-s'
         let post_args = ''
     else
