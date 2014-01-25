@@ -65,8 +65,8 @@ syn region elixirInterpolation matchgroup=elixirDelimiter start="#{" end="}" con
 
 syn region elixirDocStringStart matchgroup=elixirDocString start=+"""+ end=+$+ oneline contains=ALLBUT,@elixirNotTop
 syn region elixirDocStringStart matchgroup=elixirDocString start=+'''+ end=+$+ oneline contains=ALLBUT,@elixirNotTop
-syn region elixirDocString     start=+\z("""\)+ end=+^\s*\zs\z1+ contains=elixirDocStringStart,elixirTodo fold keepend
-syn region elixirDocString     start=+\z('''\)+ end=+^\s*\zs\z1+ contains=elixirDocStringStart,elixirTodo fold keepend
+syn region elixirDocString     start=+\z("""\)+ end=+^\s*\zs\z1+ contains=elixirDocStringStart,elixirTodo,elixirInterpolation fold keepend
+syn region elixirDocString     start=+\z('''\)+ end=+^\s*\zs\z1+ contains=elixirDocStringStart,elixirTodo,elixirInterpolation fold keepend
 
 syn match elixirSymbolInterpolated ':\("\)\@=' contains=elixirString
 syn match elixirString             "\(\w\)\@<!?\%(\\\(x\d{1,2}\|\h{1,2}\h\@!\>\|0[0-7]{0,2}[0-7]\@!\>\|[^x0MC]\)\|(\\[MC]-)+\w\|[^\s\\]\)"
@@ -90,6 +90,10 @@ syn region elixirSigil matchgroup=elixirDelimiter start="%[bcrw]{"              
 syn region elixirSigil matchgroup=elixirDelimiter start="%[bcrw]<"                                end=">"   skip="\\\\\|\\>"   fold contains=@elixirStringContained,elixirRegexEscapePunctuation
 syn region elixirSigil matchgroup=elixirDelimiter start="%[bcrw]\["                               end="\]"  skip="\\\\\|\\\]"  fold contains=@elixirStringContained,elixirRegexEscapePunctuation
 syn region elixirSigil matchgroup=elixirDelimiter start="%[bcrw]("                                end=")"   skip="\\\\\|\\)"   fold contains=@elixirStringContained,elixirRegexEscapePunctuation
+
+" Sigils surrounded with docString
+syn region elixirSigil matchgroup=elixirDelimiter start=+%[BCRWbcrw]\z("""\)+ end=+^\s*\zs\z1+ skip=+\\"+ fold
+syn region elixirSigil matchgroup=elixirDelimiter start=+%[BCRWbcrw]\z('''\)+ end=+^\s*\zs\z1+ skip=+\\'+ fold
 
 " Defines
 syn keyword elixirDefine              def            nextgroup=elixirFunctionDeclaration    skipwhite skipnl
@@ -149,7 +153,7 @@ hi def link elixirBoolean                Boolean
 hi def link elixirVariable               Identifier
 hi def link elixirUnusedVariable         Comment
 hi def link elixirNumber                 Number
-hi def link elixirDocString              Comment
+hi def link elixirDocString              String
 hi def link elixirSymbolInterpolated     elixirSymbol
 hi def link elixirRegex                  elixirString
 hi def link elixirRegexEscape            elixirSpecial

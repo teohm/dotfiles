@@ -35,6 +35,7 @@ syn keyword slimDocType        contained html 5 1.1 strict frameset mobile basic
 syn match   slimDocTypeKeyword "^\s*\(doctype\)\s\+" nextgroup=slimDocType
 
 syn keyword slimTodo        FIXME TODO NOTE OPTIMIZE XXX contained
+syn keyword htmlTagName     contained script
 
 syn match slimTag           "\w\+"         contained contains=htmlTagName nextgroup=@slimComponent
 syn match slimIdChar        "#{\@!"        contained nextgroup=slimId
@@ -61,6 +62,7 @@ syn region slimInnerAttrString start=+\s*"+ skip=+\%(\\\\\)*\\"+ end=+"\s*+ cont
 syn region slimInnerAttrString start=+\s*'+ skip=+\%(\\\\\)*\\"+ end=+'\s*+ contained contains=slimInterpolation,slimInterpolationEscape nextgroup=slimAttr
 
 syn region slimInterpolation matchgroup=slimInterpolationDelimiter start="#{" end="}" contains=@hamlRubyTop containedin=javascriptStringS,javascriptStringD,slimWrappedAttrs
+syn region slimInterpolation matchgroup=slimInterpolationDelimiter start="#{{" end="}}" contains=@hamlRubyTop containedin=javascriptStringS,javascriptStringD,slimWrappedAttrs
 syn match  slimInterpolationEscape "\\\@<!\%(\\\\\)*\\\%(\\\ze#{\|#\ze{\)"
 
 syn region slimRuby matchgroup=slimRubyOutputChar start="\s*[=]\==[']\=" skip=",\s*$" end="$" contained contains=@slimRubyTop keepend
