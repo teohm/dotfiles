@@ -64,10 +64,11 @@ let s:defaultCheckers = {
         \ 'sass':        ['sass'],
         \ 'scala':       ['fsc', 'scalac'],
         \ 'scss':        ['sass', 'scss_lint'],
-        \ 'sh':          ['sh'],
+        \ 'sh':          ['sh', 'shellcheck'],
         \ 'slim':        ['slimrb'],
         \ 'tcl':         ['nagelfar'],
         \ 'tex':         ['lacheck', 'chktex'],
+        \ 'texinfo':     ['makeinfo'],
         \ 'text':        ['atdtool'],
         \ 'twig':        ['twiglint'],
         \ 'typescript':  ['tsc'],
@@ -82,7 +83,7 @@ let s:defaultCheckers = {
         \ 'yaml':        ['jsyaml'],
         \ 'z80':         ['z80syntaxchecker'],
         \ 'zpt':         ['zptlint'],
-        \ 'zsh':         ['zsh']
+        \ 'zsh':         ['zsh', 'shellcheck']
     \ }
 
 let s:defaultFiletypeMap = {

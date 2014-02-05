@@ -23,7 +23,7 @@ endif
 let g:loaded_syntastic_less_lessc_checker = 1
 
 if !exists("g:syntastic_less_options")
-    let g:syntastic_less_options = "--no-color"
+    let g:syntastic_less_options = ""
 endif
 
 if !exists("g:syntastic_less_use_less_lint")
@@ -47,7 +47,8 @@ function! SyntaxCheckers_less_lessc_GetLocList() dict
     let makeprg = self.makeprgBuild({
         \ 'exe': s:check_file,
         \ 'args': g:syntastic_less_options,
-        \ 'tail': syntastic#util#DevNull() })
+        \ 'args_after': '--no-color',
+        \ 'tail': '> ' . syntastic#util#DevNull() })
 
     let errorformat =
         \ '%m in %f on line %l\, column %c:,' .

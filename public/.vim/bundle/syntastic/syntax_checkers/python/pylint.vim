@@ -23,7 +23,7 @@ endfunction
 
 function! SyntaxCheckers_python_pylint_GetLocList() dict
     let makeprg = self.makeprgBuild({
-        \ 'args': (s:pylint_new ? '-f text --msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}" -r n' : '-f parseable -r n -i y') })
+        \ 'args_after': (s:pylint_new ? '-f text --msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}" -r n' : '-f parseable -r n -i y') })
 
     let errorformat =
         \ '%A%f:%l:%c:%t: %m,' .
@@ -50,6 +50,8 @@ function! SyntaxCheckers_python_pylint_GetLocList() dict
         else
             let e['valid'] = 0
         endif
+
+        let e['col'] += 1
         let e['vcol'] = 0
     endfor
 
