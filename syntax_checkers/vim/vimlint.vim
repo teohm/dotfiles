@@ -42,7 +42,9 @@ endfunction
 function! SyntaxCheckers_vim_vimlint_GetLocList() dict
     " EVL102: unused variable v
     " EVL103: unused argument v
+    " EVL104: variable may not be initialized on some execution path: v
     " EVL105: global variable v is defined without g:
+    " EVL106: local variable v is used without l:
     " EVL201: unreachable code
     " EVL204: constant in conditional context
     " EVL205: missing scriptencoding
@@ -54,22 +56,26 @@ function! SyntaxCheckers_vim_vimlint_GetLocList() dict
         \ 'quiet':  1,
         \ 'EVL102': 3,
         \ 'EVL103': 3,
+        \ 'EVL104': 3,
         \ 'EVL105': 3,
+        \ 'EVL106': 3,
         \ 'EVL201': 3,
         \ 'EVL204': 3,
         \ 'EVL205': 3 })
 endfunction
 
+" @vimlint(EVL103, 1, a:filename)
 function! s:vimlintOutput(filename, pos, ev, eid, mes, obj)
-    let a:obj.error += [{
+    call add(a:obj.error, {
         \ 'bufnr': bufnr(''),
         \ 'lnum': a:pos.lnum,
         \ 'col': a:pos.col,
         \ 'vcol': 0,
         \ 'type': a:ev[0],
         \ 'text': '[' . a:eid . '] ' . a:mes,
-        \ 'valid': 1 }]
+        \ 'valid': 1 })
 endfunction
+" @vimlint(EVL103, 0, a:filename)
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'vim',
