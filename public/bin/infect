@@ -1,0 +1,338 @@
+#!/usr/bin/env ruby
+
+#####
+# This file is generated code. DO NOT send patches for it.
+#
+# Original source files with comments are at:
+# https://github.com/csexton/infect
+#####
+
+
+=begin
+Content related to pmap belongs to the pmap gem
+See source at https://github.com/bruceadams/pmap
+License
+Copyright 2011 Bruce Adams
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+=end
+require 'thread' unless defined?(Mutex)
+
+# Global variable for the default thread pool size.
+$pmap_default_thread_count ||= 64
+
+module PMap
+  class DummyOutput
+    def []=(idx, val)
+    end
+  end
+
+  def self.included(base)
+    base.class_eval do
+      # Parallel "map" for any Enumerable.
+      # Requires a block of code to run for each Enumerable item.
+      # [thread_count] is number of threads to create. Optional.
+      def pmap(thread_count=nil, &proc)
+        in_array = self.to_a        # I'm not sure how expensive this is...
+        out_array = Array.new(in_array.size)
+        process_core(thread_count, in_array, out_array, &proc)
+        out_array
+      end
+
+      def process_core(thread_count, in_array, out_array, &proc)
+        thread_count = thread_count(thread_count, in_array)
+        size = in_array.size
+
+        semaphore = Mutex.new
+        index = -1                  # Our use of index is protected by semaphore
+
+        threads = (0...thread_count).map {
+          Thread.new {
+            i = nil
+            while (semaphore.synchronize {i = (index += 1)}; i < size)
+              out_array[i] = yield(in_array[i])
+            end
+          }
+        }
+        threads.each {|t| t.join}
+      end
+      private :process_core
+
+      def thread_count(user_requested_count, items)
+        user_requested_count ||= $pmap_default_thread_count
+        raise ArgumentError, "thread_count must be at least one." unless
+          user_requested_count.respond_to?(:>=) && user_requested_count >= 1
+        [user_requested_count, items.size].min
+      end
+      private :thread_count
+
+      # Parallel "each" for any Enumerable.
+      # Requires a block of code to run for each Enumerable item.
+      # [thread_count] is number of threads to create. Optional.
+      def peach(thread_count=nil, &proc)
+        process_core(thread_count, self.to_a, DummyOutput.new, &proc)
+        self
+      end
+    end
+  end
+end
+
+module Enumerable
+  include PMap
+end
+
+# End of PMap gem
+
+#
+# This file is generated code. DO NOT send patches for it.
+#
+# Original source files with comments are at:
+# https://github.com/csexton/infect
+#
+
+module Infect
+  VERSION = "0.0.5"
+end
+
+require 'open-uri'
+require 'fileutils'
+
+module Infect
+  module Colorize
+    def colorize(code, str)
+      "\e[#{code}m#{str}\e[0m"
+    end
+    def notice(str)
+      puts colorize(32, str)
+    end
+    def error(str)
+      puts colorize(31, str)
+    end
+  end
+end
+
+
+require 'open-uri'
+require 'fileutils'
+
+module Infect
+  class Command
+    include Infect::Colorize
+
+    def self.build(command, arg ,opts)
+      case command.to_sym
+      when :bundle
+        Bundle.new(arg, opts)
+      else
+        $stderr.puts "WARNING: #{command} is not a valid command, ignorning"
+      end
+    end
+
+    protected
+
+    def mkdir(path)
+      expanded_path = File.expand_path(path)
+      unless File.directory?(expanded_path)
+        notice "Making dir #{path}"
+        FileUtils.mkdir_p(expanded_path)
+      end
+    end
+
+    def chdir(path)
+      Dir.chdir(path)
+    end
+
+    def download(url, path)
+      File.open(File.expand_path(path), "w") do |file|
+        open(url) do |read_file|
+          file.write(read_file.read)
+        end
+      end
+    end
+  end
+end
+
+module Infect
+  class Command
+    class Bundle < Command
+      attr_reader :bundle, :name, :location
+      def initialize(arg, opts)
+        @bundle = arg
+        @options = opts
+        @name = File.basename(bundle)
+        @location = File.expand_path("#{BUNDLE_DIR}/#{name}")
+      end
+
+      def url
+        "git@github.com:#{bundle}.git"
+      end
+
+      def install
+        notice "Installing #{name}... "
+        mkdir BUNDLE_DIR
+        chdir BUNDLE_DIR
+        git "clone '#{url}'"
+      end
+
+      def update
+        notice "Updating #{name}... "
+        chdir @location
+        git "pull"
+      end
+
+      def call
+        if File.exists? @location
+          update
+        else
+          install
+        end
+      end
+
+      private
+
+      def git(args)
+        `git #{args}`
+      end
+    end
+  end
+end
+
+require 'fileutils'
+module Infect
+  class Command
+    class Prereqs < Command
+      def mkdirs(list)
+        list.each do |path|
+          FileUtils.mkdir_p(File.expand_path(path))
+        end
+      end
+      def call
+        mkdir "~/.vim/bundle"
+        if RUBY_PLATFORM =~ /darwin/
+          mkdirs %w(~/Library/Vim/swap ~/Library/Vim/backup ~/Library/Vim/undo)
+        else
+          mkdirs %w(~/.local/share/vim/swap ~/.local/share/vim/backup ~/.local/share/vim/undo")
+        end
+      end
+    end
+  end
+end
+
+module Infect
+  class Cleanup
+    include Infect::Colorize
+    attr_reader :commands, :force
+
+    def initialize(commands, args = {})
+      @commands = commands
+      @force = args[:force] || false
+    end
+
+    def call
+      uninstall_unless_included names
+    end
+
+    private
+
+    def uninstall_unless_included(list)
+      Dir["#{BUNDLE_DIR}/*"].each do |path|
+        unless list.include? File.basename(path)
+          if confirm(path)
+            notice "Deleting #{path}"
+            require 'fileutils'
+            FileUtils.rm_rf path
+          else
+            notice "Leaving #{path}"
+          end
+        end
+      end
+    end
+
+    def confirm(name)
+      unless force
+        print "Remove #{name}? [Yn]: "
+        response = STDIN.gets.chomp
+        case response.downcase
+        when ''
+          true
+        when 'y'
+          true
+        else
+          false
+        end
+      end
+    end
+
+    def names
+      list = []
+      commands.each do |command|
+        if command.respond_to? :name
+          list << command.name
+        end
+      end
+      list
+    end
+
+  end
+end
+
+
+module Infect
+  VIMHOME = ENV['VIM'] || "#{ENV['HOME']}/.vim"
+  VIMRC = ENV['MYVIMRC'] || "#{ENV['HOME']}/.vimrc"
+  BUNDLE_DIR = "#{VIMHOME}/bundle"
+
+  class Runner
+    def self.call(*args)
+      force = args.include? "-f"
+
+      commands = [Command::Prereqs.new()]
+
+      File.open( VIMRC ).each_line do |line|
+        if line =~ /^"=/
+          command, arg, opts = parse_command(line.gsub('"=', ''))
+          commands << Command.build(command, arg, opts)
+        end
+      end
+
+      commands.compact.peach(&:call)
+
+      Cleanup.new(commands, :force => force).call
+
+    end
+
+    private
+
+    def self.parse_command(line)
+
+
+
+      command, arg, opts_string = line.split ' ', 3
+      [command, arg, parse_opts(opts_string)]
+    end
+
+    def self.parse_opts(string)
+      hash = {}
+      parts = string.split(/[\s:](?=(?:[^"]|"[^"]*")*$)/).reject! { |c| c.empty? }
+      if parts
+        parts.each_slice(2) do |key, val|
+          hash[key.to_sym] = val
+        end
+      end
+      hash
+    end
+  end
+end
+
+Infect::Runner.call(*ARGV)

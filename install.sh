@@ -14,6 +14,9 @@ fi
 
 cd $HOME
 git clone https://github.com/teohm/dotfiles.git .dotfiles
-git clone git@bitbucket.org:teohm/dotfiles-private.git .dotfiles/private
+git clone https://teohm@bitbucket.org/teohm/dotfiles-private.git .dotfiles/private
 
 stow -d $HOME/.dotfiles public private
+
+echo "install vim plugins"
+~/bin/infect

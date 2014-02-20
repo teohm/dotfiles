@@ -1,3 +1,35 @@
+"=bundle quanganhdo/grb256
+"=bundle tpope/vim-pathogen
+"=bundle bling/vim-airline
+"=bundle kien/ctrlp.vim
+"=bundle mileszs/ack.vim
+"=bundle sheerun/vim-polyglot
+"=bundle tpope/vim-unimpaired
+"=bundle edsono/vim-matchit
+"=bundle tpope/vim-fugitive
+"=bundle sjl/gundo.vim
+"=bundle tpope/vim-surround
+"=bundle garbas/vim-snipmate
+"=bundle tomtom/tlib_vim
+"=bundle MarcWeber/vim-addon-mw-utils
+"=bundle scrooloose/syntastic
+"=bundle majutsushi/tagbar
+"=bundle michaeljsmith/vim-indent-object
+"=bundle tpope/vim-endwise
+"=bundle ap/vim-css-color
+"=bundle rgarver/Kwbd.vim
+"=bundle skalnik/vim-vroom
+"=bundle tpope/vim-eunuch
+"=bundle tpope/vim-repeat
+"=bundle honza/vim-snippets
+"=bundle tpope/vim-dispatch
+"=bundle terryma/vim-multiple-cursors
+"=bundle thinca/vim-visualstar
+"=bundle ervandew/supertab
+"=bundle tpope/vim-rails
+"=bundle scrooloose/nerdcommenter
+"=bundle mattn/emmet-vim
+
 ""
 "" Leader key
 ""
@@ -13,8 +45,8 @@ let g:netrw_home = $HOME
 ""
 "" Pathogen
 ""
-runtime bundle/pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#incubate()
 Helptags
 
 
@@ -454,25 +486,15 @@ function! AlternateForCurrentFile()
   let new_file = current_file
   let in_spec = match(current_file, '^spec/') != -1
   let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
-  let in_lib = match(current_file, '\<lib\>') != -1
-  let has_lib_dir = isdirectory('lib')
+  "let in_app = match(current_file, '^app/') != -1
+  "let in_lib = match(current_file, '\<lib\>') != -1
+  "let has_lib_dir = isdirectory('lib')
   if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    elseif in_lib
-      let new_file = substitute(new_file, '^lib/', '', '')
-    end
     let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
     let new_file = 'spec/' . new_file
   else
     let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
     let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    elseif in_lib || has_lib_dir
-      let new_file = 'lib/' . new_file
-    end
   endif
   return new_file
 endfunction

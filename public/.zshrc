@@ -51,6 +51,10 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# press up/down to search history (for it to work on Linux)
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+
 # Loads all my bash functions
 for f in ~/.functions.d/*.bash; do
   . $f;
