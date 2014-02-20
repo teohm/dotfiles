@@ -1,5 +1,6 @@
 tags
 /private
+/public/.vim/bundle/*
 /public/.vim-data/temp/*
 /public/.vim-data/backup/*
 /public/.vim-data/.*
