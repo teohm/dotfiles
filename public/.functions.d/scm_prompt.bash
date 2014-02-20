@@ -12,7 +12,7 @@
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
-export GIT_PS1_SHOWUPSTREAM=auto    # auto,verbose,legacy,svn,git
+export GIT_PS1_SHOWUPSTREAM=verbose    # auto,verbose,legacy,svn,git
 
 # Print scm info
 scm_prompt() {
