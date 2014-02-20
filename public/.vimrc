@@ -372,6 +372,7 @@ let g:buffergator_split_size = 6
 if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column' " brew install ag
 end
+let g:vroom_detect_spec_helper = 1 " use bundle exec only if spec_helper.rb required
 
 
 """""""""""""
