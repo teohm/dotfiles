@@ -374,7 +374,6 @@ if executable('ag')
 end
 let g:vroom_detect_spec_helper = 1 " use bundle exec only if spec_helper.rb required
 
-
 """""""""""""
 " Window Auto Adjust
 """""""""""""

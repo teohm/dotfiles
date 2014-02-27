@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+rsync -av --delete --info=progress2 ~/fun/ /Volumes/DEIMOS/fun/
