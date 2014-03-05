@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 BREW_WATCHLIST='git macvim chruby ruby-install tmux'
-GEM_WATCHLIST='bundler metric_fu brakeman zeus pry pry-plus rubocop'
+GEM_WATCHLIST='bundler metric_fu brakeman zeus pry pry-plus rubocop flay flog'
 
 echo "------------"
 date
