@@ -29,6 +29,8 @@
 "=bundle tpope/vim-rails
 "=bundle scrooloose/nerdcommenter
 "=bundle mattn/emmet-vim
+"=bundle onemanstartup/vim-flog
+
 
 ""
 "" Leader key
@@ -373,6 +375,7 @@ if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column' " brew install ag
 end
 let g:vroom_detect_spec_helper = 1 " use bundle exec only if spec_helper.rb required
+:silent exe "g:flog_enable"
 
 """""""""""""
 " Window Auto Adjust
