@@ -9,7 +9,6 @@ alias dotfiles='stow -d ~/.dotfiles'
 alias tmux='tmux -u'
 
 # ruby
-alias be="bundle exec"
 alias bo="bundle open"
 
 # osx
