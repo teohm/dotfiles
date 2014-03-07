@@ -53,8 +53,14 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # press up/down to search history (for it to work on Linux)
-bindkey "^[[A" history-search-backward
-bindkey "^[[B" history-search-forward
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '\eOA' up-line-or-beginning-search
+bindkey '\e[A' up-line-or-beginning-search
+bindkey '\eOB' down-line-or-beginning-search
+bindkey '\e[B' down-line-or-beginning-search
 
 # Loads all my bash functions
 for f in ~/.functions.d/*.bash; do
