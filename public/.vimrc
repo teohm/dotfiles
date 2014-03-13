@@ -455,6 +455,7 @@ nunmap <leader>tw
 
 " Run test
 map <leader>t :VroomRunTestFile<cr>
+map <leader>r :VroomRunNearestTest<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
