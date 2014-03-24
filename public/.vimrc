@@ -30,13 +30,14 @@
 "=bundle scrooloose/nerdcommenter
 "=bundle mattn/emmet-vim
 "=bundle onemanstartup/vim-flog
+"=bundle christoomey/vim-tmux-navigator
 
 
 ""
 "" Leader key
 ""
 
-let mapleader = ','
+let mapleader = "\<Space>"
 
 ""
 "" Netrw
@@ -48,7 +49,7 @@ let g:netrw_home = $HOME
 "" Pathogen
 ""
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#incubate()
+execute pathogen#infect('bundle/{}')
 Helptags
 
 
