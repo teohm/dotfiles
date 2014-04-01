@@ -102,6 +102,7 @@ the_silver_searcher
 theora
 tmux
 tree
+v8
 watch
 wget
 xvid
