@@ -3,6 +3,7 @@ alias l='ls'
 alias ll='ls -al'
 alias lh='ls -Alh'
 alias issh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias stow='stow --ignore ".DS_Store"'
 alias dotfiles='stow -d ~/.dotfiles'
 
 # tmux

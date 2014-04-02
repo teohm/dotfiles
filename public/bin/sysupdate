@@ -21,6 +21,7 @@ brew upgrade $BREW_WATCHLIST
 echo ""
 echo "* Update brew-list.."
 brew list > notes/brew-list.txt
+brew cask list > notes/brew-cask-list.txt
 
 echo ""
 echo "* Update application-list.."
