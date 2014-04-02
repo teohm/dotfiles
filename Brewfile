@@ -3,33 +3,46 @@
 install phinze/cask/brew-cask # GUI app installer
 cask install xquartz          # required by X11 cli apps
 
-# CLI apps
+# CLI apps - must have
 install autojump
 install bash-completion
 install chruby
-install cloc
 install ctags
 install curl
 install curl-ca-bundle
-install docker
 install dos2unix
-install elasticsearch
-install fuse4x
-install fuse4x-kext
 install git
 install gnu-sed
 install htop
 install htop-osx
-install iftop
 install imagemagick
 install macvim
+install ncdu
+install node
+install reattach-to-user-namespace
+install ruby-install
+install rsync
+install sshuttle
+install stow
+install the_silver_searcher
+install tmux
+install tree
+install watch
+install wget
+install zsh
+install ntfs-3g
+install fuse4x
+install fuse4x-kext
+
+# CLI apps - optional
+install cloc
+install docker
+install elasticsearch
+install iftop
 install mysql
 install memcached
 install mongodb
-install ncdu
 install netcat
-install node
-install ntfs-3g
 install openssl
 install packer
 install parallel
@@ -38,23 +51,14 @@ install postgresql
 install pstree
 install qt
 install readline
-install reattach-to-user-namespace
 install redis
-install ruby-install
 install sbt
 install scala
 install snowcrash
 install sqlite
 install ssh-copy-id
-install sshuttle
-install stow
 install subversion
 install tesseract
-install the_silver_searcher
-install tmux
-install tree
-install watch
-install wget
 install fnichol/dvm/dvm
 
 # Applications
@@ -75,5 +79,6 @@ cask install skype
 cask install tunnelblick
 cask install utorrent
 cask install virtualbox
+cask install vmware-fusion
 cask install vlc
 cask install caskroom/versions/sublime-text3
