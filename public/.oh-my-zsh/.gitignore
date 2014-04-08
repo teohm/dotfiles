@@ -3,6 +3,8 @@ log/.zsh_history
 projects.zsh
 !custom/themes/*
 !custom/example
+custom
+!custom/plugins/example
 !custom/example.zsh
 *.swp
 !custom/example.zshcache
