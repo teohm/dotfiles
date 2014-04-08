@@ -1,0 +1,33 @@
+install cloc
+install docker
+install elasticsearch
+install iftop
+install mysql
+install memcached
+install mongodb
+install netcat
+install openssl
+install packer
+install parallel
+install pidof
+install postgresql
+install pstree
+install qt
+install readline
+install redis
+install sbt
+install scala
+install snowcrash
+install sqlite
+install ssh-copy-id
+install subversion
+install tesseract
+install fnichol/dvm/dvm
+
+cask install bittorrent-sync
+cask install cyberduck
+cask install ichm
+cask install kindle
+cask install mou
+cask install picasa
+cask install tunnelblick
