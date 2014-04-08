@@ -12,7 +12,7 @@ install git
 install gnu-sed
 install htop
 install imagemagick
-install macvim
+install vim
 install ncdu
 install node
 install reattach-to-user-namespace
