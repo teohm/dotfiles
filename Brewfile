@@ -17,7 +17,7 @@ install ncdu
 install node
 install reattach-to-user-namespace
 install ruby-install
-install rsync
+install homebrew/dupes/rsync
 install sshuttle
 install stow
 install the_silver_searcher
