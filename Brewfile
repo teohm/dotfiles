@@ -29,6 +29,11 @@ install zsh
 install ntfs-3g
 unlink osxfuse
 install fuse4x
+install gdbm
+install libffi
+install libyaml
+install openssl
+install readline
 
 cask install dropbox
 cask install google-chrome
