@@ -27,8 +27,8 @@ install watch
 install wget
 install zsh
 install ntfs-3g
+unlink osxfuse
 install fuse4x
-install fuse4x-kext
 
 cask install dropbox
 cask install google-chrome
