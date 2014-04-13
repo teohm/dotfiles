@@ -21,3 +21,6 @@ alias bfg="java -jar ~/bin/bfg-1.11.1.jar"
 # download bfg from http://rtyley.github.io/bfg-repo-cleaner/
 
 alias update_infect="curl https://raw.github.com/csexton/infect/master/standalone/infect > ~/.dotfiles/public/bin/infect && chmod +x ~/.dotfiles/public/bin/infect"
+
+alias vi='vim'
+alias v='vim'

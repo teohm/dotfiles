@@ -43,6 +43,7 @@ cask install iterm2
 cask install jumpcut
 cask install screenhero
 cask install skype
+cask install hipchat
 cask install utorrent
 cask install virtualbox
 cask install vmware-fusion
