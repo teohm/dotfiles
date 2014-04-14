@@ -61,7 +61,6 @@ libxslt
 libyaml
 little-cms
 little-cms2
-macvim
 memcached
 mongodb
 mysql
@@ -103,6 +102,7 @@ theora
 tmux
 tree
 v8
+vim
 watch
 wget
 xvid
