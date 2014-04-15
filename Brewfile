@@ -50,3 +50,4 @@ cask install virtualbox
 cask install vmware-fusion
 cask install vlc
 cask install caskroom/versions/sublime-text3
+cask install calibre
