@@ -44,6 +44,7 @@ cask install jumpcut
 cask install screenhero
 cask install skype
 cask install hipchat
+cask install slack
 cask install utorrent
 cask install virtualbox
 cask install vmware-fusion
