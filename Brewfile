@@ -26,9 +26,6 @@ install tree
 install watch
 install wget
 install zsh
-install ntfs-3g
-unlink osxfuse
-install fuse4x
 install gdbm
 install libffi
 install libyaml
@@ -51,3 +48,4 @@ cask install vmware-fusion
 cask install vlc
 cask install caskroom/versions/sublime-text3
 cask install calibre
+cask install paragon-ntfs
