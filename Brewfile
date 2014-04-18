@@ -49,3 +49,4 @@ cask install vlc
 cask install caskroom/versions/sublime-text3
 cask install calibre
 cask install paragon-ntfs
+cask install the-unarchiver
