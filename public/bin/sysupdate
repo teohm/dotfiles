@@ -16,6 +16,7 @@ gem install $GEM_WATCHLIST
 echo ""
 echo "* Update homebrew watchlist.."
 brew update
+brew upgrade brew-cask && brew cleanup
 brew upgrade $BREW_WATCHLIST
 
 echo ""

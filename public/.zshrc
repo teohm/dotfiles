@@ -86,8 +86,19 @@ export PATH=$PATH:/usr/local/share/npm/bin
 export VISUAL=vi
 export EDITOR=$VISUAL
 
+#export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
+export JAVA_HOME=/Library/Java/Home/
+export AWS_RDS_HOME=~/work/RDSCli
+export AWS_CREDENTIAL_FILE=$AWS_RDS_HOME/credential-file
+export EC2_REGION=ap-southeast-1
+
+export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+
 # Add my bins to PATH
 export PATH=~/bin:$PATH
+export LC_CTYPE=en_US.UTF-8
+
+eval `/usr/libexec/path_helper -s`
 
 #export CC=/usr/local/Cellar/apple-gcc42/4.2.1-5666.3/bin/gcc-4.2
 #export CXX=/usr/local/Cellar/apple-gcc42/4.2.1-5666.3/bin/g++-4.2

@@ -5,6 +5,9 @@ alias lh='ls -Alh'
 alias issh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias stow='stow --ignore ".DS_Store"'
 alias dotfiles='stow -d ~/.dotfiles'
+alias vidl='youtube-dl --no-mtime'
+alias s='ssh -4 -o PreferredAuthentications=publickey ng'
+alias rmdstore='find . -name ".DS_Store" -depth -exec rm {} \;'
 
 # tmux
 alias tmux='tmux -u'
@@ -13,14 +16,15 @@ alias tmux='tmux -u'
 alias bo="bundle open"
 
 # osx
-alias dnsflush="sudo killall -HUP mDNSResponder"
+#alias dnsflush="sudo killall -HUP mDNSResponder" # OSX 10.7  – 10.8
+alias dnsflush="sudo discoveryutil udnsflushcaches" # OSX 10.10
 alias deploy-automators="sudo cp -r ~/osx-automators/*.app /Applications/"
 
 # git
 alias bfg="java -jar ~/bin/bfg-1.11.1.jar"
 # download bfg from http://rtyley.github.io/bfg-repo-cleaner/
 
-alias update_infect="curl https://raw.github.com/csexton/infect/master/standalone/infect > ~/.dotfiles/public/bin/infect && chmod +x ~/.dotfiles/public/bin/infect"
+alias update_infect="curl -L --insecure https://raw.github.com/csexton/infect/master/standalone/infect > ~/.dotfiles/public/bin/infect && chmod +x ~/.dotfiles/public/bin/infect"
 
 alias vi='vim'
 alias v='vim'

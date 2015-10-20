@@ -29,15 +29,22 @@
 "=bundle tpope/vim-rails
 "=bundle scrooloose/nerdcommenter
 "=bundle mattn/emmet-vim
-"=bundle onemanstartup/vim-flog
 "=bundle christoomey/vim-tmux-navigator
+"=bundle godlygeek/tabular
+"=bundle ReekenX/vim-rename2
+"=bundle vim-scripts/ZoomWin
 
+"bundle wincent/Command-T
+"bundle onemanstartup/vim-flog
+
+set nocompatible      " Use vim, no vi defaults
 
 ""
 "" Leader key
 ""
 
-let mapleader = "\<Space>"
+"let mapleader = "\<Space>"
+let mapleader = ","
 
 ""
 "" Netrw
@@ -57,7 +64,6 @@ Helptags
 "" Basic Setup
 ""
 
-set nocompatible      " Use vim, no vi defaults
 set number            " Show line numbers
 set ruler             " Show line and column number
 syntax enable         " Turn on syntax highlighting allowing local overrides
@@ -113,6 +119,9 @@ set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 
 " Ignore bundler and sass cache
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+
+" Ignore vendored bundler dir
+set wildignore+=*/vendor/bundle/*
 
 " Ignore librarian-chef, vagrant, test-kitchen and Berkshelf cache
 set wildignore+=*/tmp/librarian/*,*/.vagrant/*,*/.kitchen/*,*/vendor/cookbooks/*
@@ -353,9 +362,9 @@ set showcmd        " shows incomplete command to the left of the ruler
 set colorcolumn=80 " draw line at column 80
 
 " Theme
-if $TERM == "xterm-256color"
-  set t_Co=256 " 256 colors
-endif
+"if $TERM == "xterm-256color"
+set t_Co=256 " use 256 colors anyway
+"endif
 set background=dark
 colorscheme grb256
 
@@ -375,8 +384,8 @@ let g:buffergator_split_size = 6
 if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column' " brew install ag
 end
-let g:vroom_detect_spec_helper = 1 " use bundle exec only if spec_helper.rb required
-:silent exe "g:flog_enable"
+let g:vroom_detect_spec_helper = 0 " always use bundle exec
+let g:vroom_spec_command = 'rspec --format documentation '
 
 """""""""""""
 " Window Auto Adjust
@@ -386,7 +395,7 @@ set winwidth=84
 " We have to have a winheight bigger than we want to set winminheight. But if
 " we set winheight to be huge before winminheight, the winminheight set will
 " fail.
-set winheight=5
+set winheight=10
 set winminheight=5
 set winheight=999
 
@@ -396,6 +405,11 @@ set winheight=999
 map <leader>gr :topleft :split config/routes.rb<cr>
 map <leader>gg :topleft 100 :split Gemfile<cr>
 
+"""""""""
+"Flog
+""""""""
+:silent exe "g:flog_enable=0"
+map <leader>fl :FlogToggle<cr>
 
 """""""""
 " Rubocop
@@ -455,7 +469,7 @@ nnoremap <c-l> <c-w>l
 nunmap <leader>tw
 
 " Run test
-map <leader>t :VroomRunTestFile<cr>
+map <leader>R :VroomRunTestFile<cr>
 map <leader>r :VroomRunNearestTest<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -506,9 +520,47 @@ endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
 
-""
-"" Load ~/.vimrc.local
-""
-if filereadable(expand('~/.vimrc.local'))
-  source ~/.vimrc.local
-endif
+""""""""""""""""""""""
+" Anafore Convetions
+""""""""""""""""""""""
+map T gt
+
+
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
+inoremap <F6> :set nowrap<CR>
+inoremap <F7> :set wrap<CR>
+nnoremap <F6> :set nowrap<CR>
+nnoremap <F7> :set wrap<CR>
+
+" go to previous file
+nnoremap <leader><leader> <c-^>
+
+" from JANUS
+" https://github.com/carlhuda/janus/blob/master/janus/vim/core/before/plugin/mappings.vim
+" switch buffers
+nmap <silent> ,. :bnext<CR>
+nmap <silent> ,m :bprev<CR>
+" switch tab
+nmap <silent> ;' :tabnext<CR>
+nmap <silent> ;l :tabprev<CR>
+nmap <silent> ;; :tabe<CR>
+" cd to directory of file in buffer
+nmap <silent> <leader>cd :lcd %:h<CR>
+" find merge conflict markers
+nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+" expands open command with directory of current file
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
+
+vmap <leader>bb :Tabularize /
+vmap <leader>vv :Tabularize /=><CR>
+
+"dont scan included files for complete
+set complete-=i
